@@ -23,9 +23,9 @@ module CatchAndRelease
       def capture &block
         $stdout = new_stdout
         yield
-        $stdout = orig_stdout
-
         return self
+      ensure
+        $stdout = orig_stdout
       end
 
       def read
@@ -46,9 +46,9 @@ module CatchAndRelease
       def capture &block
         $stderr = new_stderr
         yield
-        $stderr = orig_stderr
-
         return self
+      ensure
+        $stderr = orig_stderr
       end
 
       def read
