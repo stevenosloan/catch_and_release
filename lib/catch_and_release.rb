@@ -1,1 +1,3 @@
-require_relative 'catch_and_release/version.rb'
+require_relative 'catch_and_release/version'
+
+require_relative 'catch_and_release/catch'
