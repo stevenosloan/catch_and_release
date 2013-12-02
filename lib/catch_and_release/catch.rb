@@ -3,21 +3,21 @@ module CatchAndRelease
 
     class << self
       def stdout &block
-        StdOut.new.capture(&block).read
+        Stdout.new.capture(&block).read
       end
 
       def stderr &block
-        StdErr.new.capture(&block).read
+        Stderr.new.capture(&block).read
       end
     end
 
-    class StdOut
+    class Stdout
       attr_reader :orig_stdout
       attr_reader :new_stdout
 
       def initialize
         @orig_stdout = $stdout
-        @new_stdout  = StringIO.open('','w+')
+        @new_stdout  = StringIO.new
       end
 
       def capture &block
@@ -34,13 +34,13 @@ module CatchAndRelease
       end
     end
 
-    class StdErr
+    class Stderr
       attr_reader :orig_stderr
       attr_reader :new_stderr
 
       def initialize
         @orig_stderr = $stderr
-        @new_stderr  = StringIO.open('','w+')
+        @new_stderr  = StringIO.new
       end
 
       def capture &block
