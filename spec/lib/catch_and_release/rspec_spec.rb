@@ -6,7 +6,14 @@ RSpec.configure do |c|
 end
 
 describe CatchAndRelease::RSpec do
-  it "works to include methods in RSpec scope" do
+  it "includes methods in RSpec scope" do
     expect( respond_to?(:catch_stdout) ).to be_truthy
+  end
+  it "passes blocks methods" do
+    out = catch_stdout do
+      print 'hello world'
+    end
+
+    expect( out ).to eq 'hello world'
   end
 end
