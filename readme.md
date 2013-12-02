@@ -51,17 +51,26 @@ end
 
 ### With Rspec
 
-You can shortcut the class definitions to `Catch.stdout`, `Release.stdin` by including the `CatchAndRelease` module in rspec config.
+By including the `CatchAndRelease::RSpec` module in RSpec.config you can shortcut to any class method by calling `#{class.downcase}_#{method}`.
 
 ```ruby
 # spec/spec_helper.rb
-require 'catch_and_release'
+require 'catch_and_release/rspec'
 
 RSpec.configure do |config|
-  config.include CatchAndRelease
+  config.include CatchAndRelease::RSpec
+end
+
+describe "included" do
+  it "has method #catch_stdout" do
+    out = catch_stdout do
+      print 'hello world'
+    end
+
+    expect( out ).to eq 'hello world'
+  end
 end
 ```
-
 
 ## Testing
 

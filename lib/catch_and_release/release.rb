@@ -3,6 +3,10 @@ module CatchAndRelease
 
     class << self
 
+      def spec_methods
+        [:stdin]
+      end
+
       def stdin *args, &block
         Stdin.new.release(*args, &block)
       end

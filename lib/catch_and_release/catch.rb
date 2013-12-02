@@ -2,6 +2,10 @@ module CatchAndRelease
   module Catch
 
     class << self
+      def spec_methods
+        [:stdout, :stderr]
+      end
+
       def stdout &block
         Stdout.new.capture(&block).read
       end
