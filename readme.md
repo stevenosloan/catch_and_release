@@ -55,6 +55,7 @@ By including the `CatchAndRelease::RSpec` module in RSpec.config you can shortcu
 
 ```ruby
 # spec/spec_helper.rb
+require 'catch_and_release'
 require 'catch_and_release/rspec'
 
 RSpec.configure do |config|
